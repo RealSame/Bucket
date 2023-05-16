@@ -104,7 +104,7 @@
                         let temp_html = ''
                         if (done === 0) {
                             temp_html = `<li>
-                                    <h2>✅ ${bucket}</h2>
+                                    <h2>✅ ${sanitizeHTML(bucket)}</h2>
                                     <button onclick="done_bucket(${num})" type="button" class="btn btn-outline-primary">Done!</button>
                                     <button onclick="delete_bucket(${num})" type="button" class="btn btn-outline-danger m-1">Delete!</button>
                                 </li>`
@@ -119,6 +119,12 @@
                 }
             });
         }
+
+        var sanitizeHTML = function (str) {
+                return str.replace(/[^\w. ]/gi, function (c) {
+                    return '&#' + c.charCodeAt(0) + ';';
+                });
+            };
 
         function save_bucket() {
             let bucket = $('#bucket').val()
