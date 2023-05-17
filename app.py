@@ -21,7 +21,6 @@ def bucket_post():
         'done':0
     }
     db.bucket.insert_one(doc)
-    return jsonify({'msg':'data saved!'})
 
 @app.route("/bucket/done", methods=["POST"])
 def bucket_done():
@@ -30,7 +29,6 @@ def bucket_done():
         {'num': int(num_receive)},
         {'$set': {'done': 1}}
     )
-    return jsonify({'msg': 'Update done!'})
 
 @app.route("/bucket/delete", methods=["POST"])
 def bucket_delete():
@@ -38,7 +36,6 @@ def bucket_delete():
     db.bucket.delete_one(
         {'num': int(num_receive)}
     )
-    return jsonify({'msg': 'Update done!'})
 
 @app.route("/bucket", methods=["GET"])
 def bucket_get():
